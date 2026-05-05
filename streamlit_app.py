@@ -219,20 +219,30 @@ st.markdown("""
 
 @st.cache_resource(show_spinner=False)
 def load_models():
-    """Load models with caching"""
+    """Load models with detailed error reporting"""
     try:
         binary_model = load_model("binary.keras")
         binary_status = "✅ Loaded"
-    except:
+    except FileNotFoundError:
+        st.error("❌ File not found: binary.keras")
         binary_model = None
-        binary_status = "❌ Not Found"
+        binary_status = "❌ File not found"
+    except Exception as e:
+        st.error(f"❌ Error loading binary.keras: {str(e)}")
+        binary_model = None
+        binary_status = f"❌ Error: {str(e)[:50]}"
     
     try:
         multiclass_model = load_model("multiscale_cnn_lstm_final.keras")
         multiclass_status = "✅ Loaded"
-    except:
+    except FileNotFoundError:
+        st.error("❌ File not found: multiscale_cnn_lstm_final.keras")
         multiclass_model = None
-        multiclass_status = "❌ Not Found"
+        multiclass_status = "❌ File not found"
+    except Exception as e:
+        st.error(f"❌ Error loading multiscale model: {str(e)}")
+        multiclass_model = None
+        multiclass_status = f"❌ Error: {str(e)[:50]}"
     
     return binary_model, multiclass_model, binary_status, multiclass_status
 
