@@ -534,7 +534,7 @@ st.markdown("""
             🔬 <strong>Leukemia Detection System</strong> • Powered by Multi-Scale CNN-LSTM
         </p>
         <p style='color: #94a3b8; margin: 0.5rem 0 0 0; font-size: 0.8rem;'>
-            Final Year Project • 2024 
+            Final Year Project • 2026
         </p>
     </div>
 """, unsafe_allow_html=True)
